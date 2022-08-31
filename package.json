@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Ghost620/Zoom-Clone-with-Node-JS#readme",
   "dependencies": {
     "epress": "^0.0.1-security",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
   }
 }
