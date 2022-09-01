@@ -9,7 +9,7 @@ const peerServer = ExpressPeerServer(server, {debug: true})
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
-app.use('/peer', peerServer)
+app.use('/peerjs', peerServer)
 
 app.get('/', (req, res) => {
     res.redirect(`/${uuidv4()}`)
@@ -23,7 +23,7 @@ io.on('connection', socket => {
     socket.on('join-room', (roomId, userId) => {
         socket.join(roomId)
         socket.broadcast.to(roomId).emit('user-connected', userId);
-        console.log(`Room Joined : ${roomId}`)
+        console.log(`Room Joined :${roomId}`)
     })
 })
 
