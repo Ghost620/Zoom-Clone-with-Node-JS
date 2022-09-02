@@ -8,3 +8,16 @@ video{
     width: 400px;
     border-color: black;
 }
+
+.main {
+    height: 100vh;
+    display: flex;
+}
+
+.main_left{
+    flex: 0.8;
+}
+
+.main_right{
+    flex: 0.2;
+}
