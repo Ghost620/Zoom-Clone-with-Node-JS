@@ -63,3 +63,8 @@ $('html').keydown((e) => {
         text.val('')
     }
 })
+
+socket.on('createMessage', msg => {
+    console.log('Recieved : ', msg)
+    $('ul').append(`<li class="message"><b>user</b><br/>${message}</li>`)
+})
