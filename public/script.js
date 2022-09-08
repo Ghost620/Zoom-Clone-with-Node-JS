@@ -13,7 +13,7 @@ var peer = new Peer(undefined, {
 let videoStream;
 navigator.mediaDevices.getUserMedia({
     video: true,
-    audio:true
+    audio: true
 }).then((stream) => {
 
     videoStream = stream
@@ -77,5 +77,56 @@ const scrollToBottom = () => {
 // MIC MUTE 
 
 const muteUnmute = () => {
+    const enabled = videoStream.getAudioTracks()[0].enabled
+    if (enabled) {
+        videoStream.getAudioTracks().enabled = false
+        setUnMuteButton()
+    } else {
+        setMuteButton()
+        videoStream.getAudioTracks()[0].enabled = true
+    }
+
+    const setMuteButton = () => {
+        const html = `
+            <i class="fas fa=microphone"></i>
+            <span> Mute </span>
+        `
+        $('.main_mute_button').innerHTML = html
+    }
     
+    const setUnMuteButton = () => {
+        const html = `
+            <i class="unmute fas fa=microphone-slash"></i>
+            <span> Unmute </span>
+        `
+        $('.main_mute_button').innerHTML = html
+    }
+}
+
+const playStop = () => {
+
+    let enabled = videoStream.getVideoTracks()[0].enabled;
+    if (enabled) {
+      videoStream.getVideoTracks()[0].enabled = false;
+      setPlayVideo()
+    } else {
+      setStopVideo()
+      videoStream.getVideoTracks()[0].enabled = true;
+    }
+
+    const setStopVideo = () => {
+        const html = `
+          <i class="fas fa-video"></i>
+          <span>Stop Video</span>
+        `
+        $('.main_video_button').innerHTML = html;
+      }
+      
+    const setPlayVideo = () => {
+        const html = `
+        <i class="stop fas fa-video-slash"></i>
+            <span>Play Video</span>
+        `
+        $('.main_video_button').innerHTML = html;
+    }
 }
