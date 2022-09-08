@@ -55,15 +55,27 @@ const addVideoStream = (video, stream) => {
 }
 
 let text = $('input')
-    $('html').keydown((e) => {
-        if (e.which == 13 && text.val().legth !==0) {
-            console.log(text.val())
-            socket.emit('message', text.val())
-            text.val('')
-        }
-    })
+$('html').keydown((e) => {
+    if (e.which == 13 && text.val().legth !==0) {
+        console.log(text.val())
+        socket.emit('message', text.val())
+        text.val('')
+    }
+})
 
-    socket.on('createMessage', msg => {
-        console.log('Recieved : ', msg)
-        $('ul.messages').append(`<li class="message"><b>user</b><br/>${msg}</li>`)
-    })
+socket.on('createMessage', msg => {
+    console.log('Recieved : ', msg)
+    $('.messages').append(`<li class="message"><b>user</b><br/>${msg}</li>`)
+    scrollToBottom()
+})
+
+const scrollToBottom = () => {
+    let d = $('.main_chat_window')
+    d.scrollTop(d.prop("scrollHeight"))
+}
+
+// MIC MUTE 
+
+const muteUnmute = () => {
+    
+}
