@@ -20,6 +20,7 @@ app.get('/:room', (req, res) => {
 })
 
 io.on('connection', socket => {
+
     socket.on('join-room', (roomId, userId) => {
         socket.join(roomId)
         socket.broadcast.to(roomId).emit('user-connected', userId);
@@ -28,6 +29,11 @@ io.on('connection', socket => {
             io.to(roomId).emit('createMessage', msg)
         })
     })
+
+    socket.on('disconnect', () => {
+        socket.to(roomId).broadcast.emit('user-disconnected', userId)
+    })
+    
 })
 
 server.listen(process.env.PORT || 3030)
